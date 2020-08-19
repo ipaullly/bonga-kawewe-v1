@@ -1,68 +1,36 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Swahili-Language-TTS-using-gTTS-libraries-Node.js-Express
 
-## Available Scripts
+A short project that seeks to display the text-to-speech engine for a specific language, Swahili.
 
-In the project directory, you can run:
+The idea is to open this up to Swahili-speaking developers and find ways to improve the text-to-speech engine so that it speaks more like 
+real human, with additional vocabulary and possibly a proper accent. (This is actually a separate project with the help of open-source tools, such as Espeak)
 
-### `npm start`
+It works simply by typing any Swahili text/sentence that someone is familiar with into the text-box, then download the file for the words to be converted 
+to actual Swahili speech. It will be downloaded as an mp3 file on whichever browser your device will be connected to. For listening, one has to locate the file
+in the downloads folder and then use the default media player on the device to listen.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+It is a landing page that we plan to use as visual or source of information to any interested person.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+It is very simple to test the code and see if it works.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+First, install Node Package Manager (npm) on to your machine. 
 
-### `npm run build`
+Then, we need to install the dependancies for this application to work. 
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+npm install express, for enabling the server
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+npm install body-parser, to assist with creating a middleware instance
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+npm install gtts.js, to enable the text-to-speech sysnthesis to run on our application, for Swahili language, it is encoded as: lang = 'sw'
 
-### `npm run eject`
+npm install ejs, for the file to be visible on the web, it is necessary to have a 'views' folder in the index.ejs file to be displayed and a 'public' folder to display images
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To display the web page: create a 'views' folder and an index.ejs file in that folder
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The index.ejs file is quite similar to a html file. So, you can create a form with method="POST" and action="/" In the form have a textarea with input type="submit"
+value="Download as mp3"
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To show images for any case: create a 'public' folder and add the images to be displayed on this folder. In my case I used the images for logo display and additional styling
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Now, this should be working and someone is able to have this app run on your personal PC. I hope this helps
