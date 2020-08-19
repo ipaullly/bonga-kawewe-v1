@@ -1,0 +1,162 @@
+.container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  .home {
+    color: rgba(97, 96, 90, 0.8);
+    width: 65%;
+    height: 35vh;
+    text-align: center;
+    background-color: white;
+    border-radius: 10px;
+    margin: 50px auto 0;
+    .text-box {
+      padding: 0 40px;
+      textarea {
+        border-style: none; 
+        border-color: Transparent; 
+        outline-color: transparent;
+        overflow: auto;   
+        width: 100%;
+        min-height: 18vh;
+      }
+    }
+    .adjust-text{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      .switch{
+        margin: 10px;
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 20px;
+        > input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+          &:checked + .slider {
+            background-color: #f1c232;
+          }
+          &:focus + .slider {
+            box-shadow: 0 0 1px #f1c232;
+          }
+          &:checked + .slider:before {
+            -webkit-transform: translateX(20px);
+            -ms-transform: translateX(20px);
+            transform: translateX(20px);
+          }
+        }
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: .4s;
+          transition: .4s;
+          &:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 1px;
+            bottom: 3px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+          }
+        }
+        .round {
+          border-radius: 34px;
+          &:before {
+            border-radius: 50%;
+          }
+        }
+      }
+      .font-adjust-icons{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        .reduce-font{
+          padding: 10px;
+          position: relative;
+          margin-top: 5px;
+          :nth-child(1){
+            font-size: 1.5em;
+            padding: 5px;
+            border-radius: 5px;
+            &:hover{
+              background-color: rgba(189, 188, 184, 0.8);
+            }
+            &:active{
+              transform: scale(0.9);
+              transition: all 0.1s ease-in-out;
+            }
+          }
+          :nth-child(2){
+            position: absolute;
+            top: 0;
+            right: 2px;
+          }
+        }
+        .increase-font{
+          padding: 10px;
+          position: relative;
+          margin: 5px 5px 0 0;
+          :nth-child(1){
+            font-size: 1.5em;
+            padding: 5px;
+            border-radius: 5px;
+            &:hover{
+              background-color: rgba(189, 188, 184, 0.8);
+            }
+            &:active{
+              transform: scale(0.9);
+              transition: all 0.1s ease-in-out;
+            }
+          }
+          :nth-child(2){
+            position: absolute;
+            top: 0;
+            right: 2px;
+          }
+        }
+        .trash{
+          padding: 10px;
+          margin-top: 5px;
+          :nth-child(1){
+            font-size: 1.5em;
+            padding: 5px;
+            border-radius: 5px;
+            &:hover{
+              background-color: rgba(189, 188, 184, 0.8);
+            }
+            &:active{
+              transform: scale(0.9);
+              transition: all 0.1s ease-in-out;
+            }
+          }
+        }
+      }
+
+    }
+  }
+  .back-fade {
+    background-color: #837960;
+    top: 0;
+    position: absolute;
+    min-height: 48vh;
+    width: 100%;
+    z-index: -2;
+    background-image:
+      linear-gradient(to bottom, rgba(233, 203, 35, 0.66), rgb(255, 255, 255)),
+      url("https://i.ibb.co/ZdN421T/ABSTRACT-BACKGROUND-Freepik.jpg");
+    background-repeat: no-repeat;
+  }
+}
