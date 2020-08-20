@@ -2,39 +2,126 @@
   display: flex;
   flex-direction: row;
   width: 100vw;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   background-color: #000000;
   color: beige;
-  .logo {
-    height: auto;
-    width: auto;
-    max-width: 16vw;
-    max-height: 6vh;
-    border-radius: 40px;
-    padding: 10px;
-  }
-  .navbar-brand-title{
-    font-size: 2.0rem;
-    margin-left: 3.2rem;
-    color: #f1c232;
-  }
-  .toggle-button {
-    position: absolute;
-    top: .75rem;
-    right: 1rem;
-    display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    .bar {
-      height: 3px;
-      width: 100%;
-      background-color: #f1c232;
-      border-radius: 10px;
+  .logo-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .logo {
+      height: auto;
+      width: auto;
+      max-width: 16vw;
+      max-height: 6vh;
+      border-radius: 40px;
+      padding: 10px;
     }
-    
+    .navbar-brand-title{
+      font-size: 1.3rem;
+      text-transform: uppercase;
+      color: #f1c232;
+    }
+  }
+  .filters-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .stream-button{
+      cursor: pointer;
+      margin: 0 15px 0 0;
+      padding: 16px; 
+      border-radius: 50%;
+      background-color: #f1c232;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      &:hover{
+        background-color: black;
+        color: #f1c232;
+        border: 3px solid #f1c232;
+      }
+      &:active{
+        transform: scale(0.9);
+        transition: all 0.1s ease-in-out;
+      }
+    }
+    .download-button{
+      cursor: pointer;
+      margin: 0 15px 0 0;
+      display: flex;
+      padding: 12px; 
+      border-radius: 50%;
+      flex-direction: column;
+      align-items: center;
+      color: #f1c232;
+      :first-child(1){
+        font-size: 1.8em;
+      }
+      :nth-last-child(1){
+        font-size: 0.8em;
+      }
+      &:hover{
+        background-color: #f1c232;
+        color: black;
+      }
+      &:active{
+        transform: scale(0.9);
+        transition: all 0.1s ease-in-out;
+      }
+    }
+    .voice-dropdown{
+      margin: 0 15px 0 0;
+      position: relative;
+      display: inline-block;
+      &:hover{
+        .dropdown-content {
+          display: block;
+        }
+        .dropbtn {
+          background-color: #3e8e41;
+        }        
+      }
+      .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        width: 12vw;
+        border-radius: 18px;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        outline: none;
+      }
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 12vw;
+        border-radius: 18px;
+        text-align: center;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        > span {
+          color: black;
+          padding: 12px 16px;
+          margin: 3px;
+          border-radius: 18px;
+          text-decoration: none;
+          display: block;
+          &:hover {background-color: #b1aeae71}
+          &:active{
+            transform: scale(0.9);
+            transition: all 0.1s ease-in-out;
+          }
+        }
+      }
+    }
+    .toggle-speech-speed{
+
+    }
   }
   .navbar-links {
     > ul {
