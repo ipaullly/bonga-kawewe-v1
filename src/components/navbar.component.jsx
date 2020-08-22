@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom'
 import { ImPlay3 } from 'react-icons/im';
 import { BsDownload } from 'react-icons/bs';
 
@@ -6,10 +7,11 @@ import './navbar.styles.scss'
 
 const Navbar = () => {
   const [voice, setVoice] = useState('swahili');
+  const [speed, setSpeed] = useState(false);
 
   return (
     <div className='navbar'>
-      <div className="logo-container">
+      <Link to='/' className="logo-container">
         <img 
           src="https://i.ibb.co/yBVYbfN/Slide2.png"
           alt="Slide2"
@@ -17,7 +19,7 @@ const Navbar = () => {
           className='logo'
         />
         <div className="navbar-brand-title">Bonga kaWeWe</div>
-      </div>
+      </Link>
       <div className="filters-container">
         <div className="stream-button"><ImPlay3 /></div>
         <div className="download-button"><BsDownload /><span>MP3</span></div>
@@ -35,12 +37,17 @@ const Navbar = () => {
             >Swahili</span>
           </div>
         </div>
-        <div className="toggle-speech-speed">Toggle speed</div>
+        <div className="toggle-speech-speed"
+          onClick={() => setSpeed(!speed)}
+        >
+          {
+            speed? 'Fast': 'Slow'
+          }
+        </div>
       </div>
       <div className="navbar-links">
         <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><Link to="/about">About</Link></li>
         </ul>
       </div>
     </div>
