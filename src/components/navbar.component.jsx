@@ -1,57 +1,75 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect, useCallback, useContext } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { ImPlay3 } from 'react-icons/im';
 import { BsDownload } from 'react-icons/bs';
 
-import './navbar.styles.scss'
+import './navbar.styles.scss';
+import { Context } from '../context/store';
 
-const Navbar = () => {
-  const [voice, setVoice] = useState('swahili');
-  const [speed, setSpeed] = useState(false);
+const Navbar = ({ voice, speed, setSpeed, setVoice, setStream }) => {
+  const [hideAudioPlayer, setHideAudioPlayer] = useState(false);
+  const context = useContext(Context);
 
+  const location = useLocation();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (location.pathname === '/about') {
+      setHideAudioPlayer(true);
+    }
+    if (location.pathname === '/') {
+      setHideAudioPlayer(false);
+    }
+    console.log(location, '===/');
+  }, [location]);
+
+  const handleAboutClick = () => {
+    history.push('/about');
+  };
+
+  const handleLogoClick = () => {
+    history.push('/');
+  };
   return (
-    <div className='navbar'>
-      <Link to='/' className="logo-container">
-        <img 
+    <div className="navbar">
+      <div onClick={() => handleLogoClick()} className="logo-container">
+        <img
           src="https://i.ibb.co/yBVYbfN/Slide2.png"
           alt="Slide2"
           border="0"
-          className='logo'
+          className="logo"
         />
         <div className="navbar-brand-title">Bonga kaWeWe</div>
-      </Link>
-      <div className="filters-container">
-        <div className="stream-button"><ImPlay3 /></div>
-        <div className="download-button"><BsDownload /><span>MP3</span></div>
-        <div className="voice-dropdown">
-          <button class="dropbtn">Voices</button>
-          <div class="dropdown-content">
-            <span
-              onClick={() => setVoice('english')}
-            >English</span>
-            <span
-              onClick={() => setVoice('italian')}
-            >Italian</span>
-            <span
-              onClick={() => setVoice('swahili')}
-            >Swahili</span>
+      </div>
+      {!hideAudioPlayer ? (
+        <div className="filters-container">
+          <div className="stream-button" onClick={() => setStream(true)}>
+            <ImPlay3 />
+          </div>
+          <div className="download-button">
+            <BsDownload />
+            <span>MP3</span>
+          </div>
+          <div className="voice-dropdown">
+            <button className="dropbtn">{voice}</button>
+            <div className="dropdown-content">
+              <span onClick={() => setVoice('English')}>English</span>
+              <span onClick={() => setVoice('Italian')}>Italian</span>
+              <span onClick={() => setVoice('Swahili')}>Swahili</span>
+            </div>
+          </div>
+          <div className="toggle-speech-speed" onClick={() => setSpeed(!speed)}>
+            {speed ? 'Fast' : 'Slow'}
           </div>
         </div>
-        <div className="toggle-speech-speed"
-          onClick={() => setSpeed(!speed)}
-        >
-          {
-            speed? 'Fast': 'Slow'
-          }
-        </div>
-      </div>
+      ) : null}
       <div className="navbar-links">
         <ul>
-          <li><Link to="/about">About</Link></li>
+          <li onClick={() => handleAboutClick()}>About</li>
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
