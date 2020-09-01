@@ -50,14 +50,14 @@ const Navbar = ({ voice, speed, setSpeed, setVoice, setStream }) => {
             <BsDownload />
             <span>MP3</span>
           </div>
-          <div className="voice-dropdown">
+          {/* <div className="voice-dropdown">
             <button className="dropbtn">{voice}</button>
             <div className="dropdown-content">
               <span onClick={() => setVoice('English')}>English</span>
               <span onClick={() => setVoice('Italian')}>Italian</span>
               <span onClick={() => setVoice('Swahili')}>Swahili</span>
             </div>
-          </div>
+          </div> */}
           <div className="toggle-speech-speed" onClick={() => setSpeed(!speed)}>
             {speed ? 'Fast' : 'Slow'}
           </div>

@@ -25,15 +25,7 @@ const HomePage = () => {
   const handleStream = useCallback(() => {
     axios
       .get(
-        `http://localhost:8080/hear?lang=${
-          voice === 'Swahili'
-            ? 'sw'
-            : voice === 'English'
-            ? 'en-uk'
-            : voice === 'Italian'
-            ? 'it'
-            : 'en'
-        }&text=${swahiliText}&speed=${speed}`
+        `http://localhost:8080/hear?lang=sw&text=${swahiliText}&speed=${speed}`
       )
       .then((data) => {
         console.log(data);
