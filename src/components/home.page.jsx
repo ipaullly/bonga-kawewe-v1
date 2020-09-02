@@ -6,12 +6,12 @@ import axios from 'axios';
 import Navbar from './navbar.component';
 import './home.styles.scss';
 import { Context } from '../context/store';
+const fileDownload = require('js-file-download');
 
 const HomePage = () => {
   const [adjustedFontSize, setAdjustedFontSize] = useState(1.3);
   const [checked, setChecked] = useState(false);
   const [swahiliText, setSwahiliText] = useState('');
-  const [voice, setVoice] = useState('Swahili');
   const [speed, setSpeed] = useState(false);
   const [stream, setStream] = useState(false);
   const { globalState, dispatch } = React.useContext(Context);
@@ -22,34 +22,45 @@ const HomePage = () => {
     }
   };
 
+  const getAudioContext =  useCallback(() => {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioContent = new AudioContext();
+    return audioContent;
+  },[]);
+
   const handleStream = useCallback(() => {
     axios
-      .get(
-        `http://localhost:8080/hear?lang=sw&text=${swahiliText}&speed=${speed}`
+      .get(`http://localhost:8080/?text=${swahiliText}&speed=${speed}`,
+        { responseType: 'arraybuffer' }
       )
-      .then((data) => {
-        console.log(data);
-        const audio = new Audio(data.data);
-        const audioPromise = audio.play();
-        if (audioPromise !== undefined) {
-          audioPromise
-            .then(_ => {
+      .then( async (res) => {
+        setStream(false)
+        console.log(res.headers);
+        console.log(res.status);
+        const audioContext = getAudioContext();
+        // create audioBuffer (decode audio file)
+        const audioBuffer = await audioContext.decodeAudioData(res.data);
 
-              console.log('audio played');
-              audio.pause()
-            })
-            .catch(error => {
+        // create audio source
+        const source = audioContext.createBufferSource();
+        source.buffer = audioBuffer;
+        source.connect(audioContext.destination);
 
-              console.log('playback prevented');
-            })
-        }
-        console.log(typeof data.data, 'type');
-        setStream(false);
+        // play audio
+        source.start();
+        // const mp3 = new Blob([res.data], { type: 'audio/mp3' });
+        
+        // // console.log('blobbed');
+        // const url = window.URL.createObjectURL(mp3)
+        // const audio = new Audio(url)
+        // fileDownload(audio, 'savedAudio.mp3');
+        // audio.load()
+        // await audio.play()
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
-  }, [voice, swahiliText, speed]);
+  }, [swahiliText, speed]);
 
   useEffect(() => {
     if (stream) {
@@ -83,10 +94,8 @@ const HomePage = () => {
   return (
     <div className="container">
       <Navbar
-        voice={voice}
         speed={speed}
         setSpeed={setSpeed}
-        setVoice={setVoice}
         setStream={setStream}
       />
       <div className="back-fade" />

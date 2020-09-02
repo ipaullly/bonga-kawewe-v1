@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { Link, useLocation, useHistory } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { useLocation, useHistory } from 'react-router-dom';
 import { ImPlay3 } from 'react-icons/im';
 import { BsDownload } from 'react-icons/bs';
 

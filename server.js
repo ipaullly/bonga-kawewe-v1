@@ -1,15 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const path = require('path');
+const gtts = require('gtts.js').gTTS
 
-const Gtts = require('gtts');
 const app = express();
 
 //To create an environment variable port
 const port = process.env.PORT || 8080;
 
-app.use(express.static(path.join(__dirname, 'build')));
+//To create a middleware instance from the root directory 
+app.use(express.static('build'));
 
 //To create middleware instance
 app.use(cors());
@@ -20,15 +20,19 @@ app.get('/speech', function (req, res) {
   return res.send('pong');
 });
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+app.get(`/`, (req, res) => {
+  const speed = req.query.speed;
+  const text = req.query.text;
+  const speech = new gtts(text,'sw',speed)
 
-
-app.get('/hear', (req, res) => {
-  const gtts = new Gtts(req.query.text, req.query.lang, req.query.speed);
-  gtts.stream().pipe(res);
-});
+  speech.save("bongaSwahili.mp3")
+    .then(() => {
+      res.download("bongaSwahili.mp3");
+    })
+    .catch((err)=> {
+      console.log(err);
+    })
+});  
 
 // app.post(`/stream`, (req, res) => {
 //   const text = req.body.text
