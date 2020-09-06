@@ -117,7 +117,7 @@ const HomePage = () => {
                 letterSpacing: '2px',
               }}
             >
-              Banger Font
+              Any Swahili Word
             </span>
           </div>
           <div className="font-adjust-icons">
