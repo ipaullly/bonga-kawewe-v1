@@ -29,7 +29,7 @@
           align-items: center;
           :nth-child(1n){
             cursor: pointer;
-            font-size: 1.4em;
+            font-size: 1.0em;
             &:active {
               transform: scale(0.9);
               transition: transform 0.1s ease-in-out;

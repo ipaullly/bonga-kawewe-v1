@@ -1,5 +1,5 @@
 import React from 'react'
-import {FaTwitter, FaInstagram, FaFacebookF} from 'react-icons/fa'
+import {FaTwitter, FaInstagram, FaFacebookF, FaLinkedin, FaYoutube} from 'react-icons/fa'
 
 import './footer.styles.scss'
 import { RiCopyrightLine } from 'react-icons/ri'
@@ -19,6 +19,8 @@ const Footer = () => {
               <div className="icon"><FaFacebookF /></div>
               <div className="icon"><FaInstagram /></div>
               <div className="icon"><FaTwitter /></div>
+              <div className="icon"><FaLinkedin/></div>
+              <div className="icon"><FaYoutube/></div>
             </div>
           </div>
         </div>
